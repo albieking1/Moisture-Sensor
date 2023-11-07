@@ -1,17 +1,17 @@
-const int lightHundredsPin = 13;
-const int lightTensPin = 12;
-const int lightOnesPin = 11;
-const int waterSensorPin = A0;
+const int ledhundredspin = 13;
+const int ledtenspin = 12;
+const int ledunitspin = 11;
+const int moisturesensorpin = A0;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(lightHundredsPin, OUTPUT);
-  pinMode(lightTensPin, OUTPUT);
-  pinMode(lightOnesPin, OUTPUT);
+  pinMode(ledhundredspin, OUTPUT);
+  pinMode(ledtenspin, OUTPUT);
+  pinMode(ledunitspin, OUTPUT);
 }
 
 void loop() {
-  int waterLevel = analogRead(waterSensorPin);
+  int waterLevel = analogRead(moisturesensorpin);
   String waterLevelStr = String(waterLevel);
   while (waterLevelStr.length() < 3) {
     waterLevelStr = "0" + waterLevelStr;
@@ -21,23 +21,23 @@ void loop() {
     int digit = waterLevelStr[i] - '0';
     if (i == 0) {
       for (int j = 0; j < digit; j++) {
-        digitalWrite(lightHundredsPin, HIGH);
+        digitalWrite(ledhundredspin, HIGH);
         delay(500);
-        digitalWrite(lightHundredsPin, LOW);
+        digitalWrite(ledhundredspin, LOW);
         delay(500);
       }
     } else if (i == 1) {
       for (int j = 0; j < digit; j++) {
-        digitalWrite(lightTensPin, HIGH);
+        digitalWrite(ledtenspin, HIGH);
         delay(500);
-        digitalWrite(lightTensPin, LOW);
+        digitalWrite(ledtenspin, LOW);
         delay(500);
       }
     } else if (i == 2) {
       for (int j = 0; j < digit; j++) {
-        digitalWrite(lightOnesPin, HIGH);
+        digitalWrite(ledunitspin, HIGH);
         delay(500);
-        digitalWrite(lightOnesPin, LOW);
+        digitalWrite(ledunitspin, LOW);
         delay(500);
       }
     }
